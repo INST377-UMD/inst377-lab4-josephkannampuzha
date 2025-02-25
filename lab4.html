@@ -1,0 +1,88 @@
+
+<html>
+    <head>
+        <title>INST 377 - lab 4</title>
+        <style>
+            .section {
+                border: 1px solid black;
+                background-color: purple;
+                padding: 10px;
+                margin: 10px;
+                border-radius: 5px;
+            }
+            body {
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="main-heading">INST 377 - Lab 4</h1>
+
+        <!-- Alert Me Section -->
+        <div class="section" id="alert-me-section">
+            <h2>Alert Me Section</h2>
+            <form name="AlertForm" onsubmit="return alertMe()">
+                <label for="alertName">Name:</label>
+                <input type="text" id="alertName" name="alertName" required>
+                <br>
+                <input type="submit" value="Alert Me">
+            </form>
+        </div>
+
+        <!-- Change Color Section -->
+        <div class="section" id="change-color-section">
+            <h2>Change Color Section</h2>
+            <button onclick="changeColor()">Change Color</button>
+        </div>
+
+        <!-- Text Tester Section -->
+        <div class="section" id="text-tester-section">
+            <h2>Text Tester Section</h2>
+            <form name="TextTesterForm" onsubmit="return validateText()">
+                <label for="testerText">Text:</label>
+                <input type="text" id="testerText" name="testerText">
+                <br>
+                <input type="submit" value="Validate Text">
+            </form>
+        </div>
+
+        <!-- Add Text Section -->
+        <div class="section" id="add-text-section">
+            <h2>Add Text Section</h2>
+            <button onclick="addText()">Add Text</button>
+        </div>
+
+        <!-- Javascript code -->
+        <script type="text/javascript">
+            function alertMe() {
+                var name = document.forms.AlertForm.alertName.value;
+                alert("Hi " + name + "!");
+                return false; 
+            }
+
+            function changeColor() {
+                var currentColor = window.getComputedStyle(document.body).backgroundColor;
+                if (currentColor === "rgb(0, 0, 255)") { 
+                    document.body.style.backgroundColor = "green";
+                } else {
+                    document.body.style.backgroundColor = "blue";
+                }
+            }
+
+            function validateText() {
+                var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                var text = document.forms.TextTesterForm.testerText.value;
+                if (validation.test(text)) {
+                    alert("How about no!");
+                    return false; 
+                }
+                return true; 
+            }
+
+            function addText() {
+                var heading = document.getElementById("main-heading");
+                heading.innerHTML += " Add Text";
+            }
+        </script>
+    </body>
+</html>
